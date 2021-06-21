@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Template.Data.Context;
@@ -9,9 +10,10 @@ using Template.Data.Context;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(TemplateContext))]
-    partial class TemplateContextModelSnapshot : ModelSnapshot
+    [Migration("20210621004345_Common Fields")]
+    partial class CommonFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,6 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = new Guid("ea972fe2-a22e-478b-a0f7-5a9d569fbb30"),
-                            DateCreated = new DateTime(2020, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "userdefault@template.com",
                             IsDeleted = false,
                             Name = "User Default"

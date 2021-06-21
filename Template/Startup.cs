@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Template.Data.Context;
+using Template.IoC;
 
 namespace Template
 {
@@ -19,14 +20,17 @@ namespace Template
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<TemplateContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("TemplateDB")).EnableSensitiveDataLogging());
+            services.AddDbContext<TemplateContext>(opt => 
+                opt.UseNpgsql(
+                    Configuration.GetConnectionString("TemplateDB"))
+                .EnableSensitiveDataLogging());
 
-            // In production, the Angular files will be served from this directory
+            NativeInjector.RegisterServices(services);
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
