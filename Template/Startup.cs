@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Template.Application.AutoMapper;
 using Template.Data.Context;
 using Template.IoC;
 
@@ -30,6 +31,8 @@ namespace Template
                 .EnableSensitiveDataLogging());
 
             NativeInjector.RegisterServices(services);
+
+            services.AddAutoMapper(typeof(AutoMapperSetup));
 
             services.AddSpaStaticFiles(configuration =>
             {
