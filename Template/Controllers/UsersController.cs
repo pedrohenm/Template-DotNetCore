@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Template.Application.Interfaces;
+using Template.Application.ViewModels;
 
 namespace Template.Controllers
 {
@@ -18,6 +19,12 @@ namespace Template.Controllers
         public IActionResult Get()
         {
             return Ok(_userService.Get());
+        }
+
+        [HttpPost]
+        public IActionResult Post(UserViewModel userViewModel)
+        {
+            return Ok(_userService.Post(userViewModel));
         }
     }
 }
